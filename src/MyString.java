@@ -1,74 +1,78 @@
 import java.util.Arrays;
 
 public class MyString {
+    private char[] chars;
 
-    public char get(String s, int number) {
-        if (number > 0) {
-            char[] chars = s.toCharArray();
-            return chars[number];
+    public MyString(char[] chars) {
+        this.chars = chars;
+    }
+
+    public char get(int index) throws IllegalArgumentException, IndexOutOfBoundsException {
+        verifyOutOfBounds(index);
+        verifyIllegalArgument(index);
+        if (index >= 0) {
+            return chars[index];
         } else {
             return 0;
         }
     }
 
 
-    public char[] get(String s, int from, int to) {
-        if (from < to && from >= 0) {
-            int temp = 0;
-            char[] chars = s.toCharArray();
-            char[] newChars = new char[to - from];
-            for (int i = from; i < to; i++) {
-                newChars[temp] = chars[i];
-                temp++;
-            }
-            return newChars;
-        } else {
-            return null;
+    public void set(char letter, int index) throws IllegalArgumentException, IndexOutOfBoundsException {
+        verifyOutOfBounds(index);
+        verifyIllegalArgument(index);
+        if (index >= 0) {
+            chars[index] = letter;
         }
     }
 
-    public char[] set(String s, char letter, int number) {
-        if (number >= 0) {
-            char[] chars = s.toCharArray();
-            chars[number] = letter;
-            return chars;
-        } else {
-            return null;
-        }
-    }
-
-    public int indexOf(String s, char letter) {
-        char[] chars = s.toCharArray();
-        int number = -1;
+    public int indexOf(char letter) {
         for (int i = 0; i < chars.length; i++) {
             if (chars[i] == letter) {
-                number = i;
+                return i;
             }
         }
-        return number;
+        return -1;
     }
 
-    public int contains(String s, char letter) {
-        char[] chars = s.toCharArray();
-        int number = -1;
-        for (int i = 0; i < chars.length; i++) {
-            if (chars[i] == letter) {
-                number = 1;
+    public boolean contains(char letter) {
+        for (char aChar : chars) {
+            if (aChar == letter) {
+                return true;
             }
         }
-        return number;
+        return false;
     }
 
     public static void main(String[] args) {
-        MyString myString = new MyString();
-        String test = "abcdefgh";
-        System.out.println(myString.get(test, 3));
-        System.out.println(myString.get(test, 2, 4));
-        System.out.println("Before set: " + test);
+        MyString myString = new MyString("abcdefgh".toCharArray());
+        System.out.println(myString.get(3));
+        System.out.println("Before set: " + myString.toString());
         System.out.print("After set: ");
-        System.out.println(myString.set(test, 'f', 3));
-        System.out.println(myString.indexOf(test, 'h' ));
-        System.out.println(myString.contains(test, 'p' ));
+        myString.set('x', 3);
+        System.out.println(myString.toString());
+        System.out.println(myString.indexOf('h'));
+        System.out.println(myString.contains('p'));
+    }
+
+
+    private void verifyOutOfBounds(int index) throws IndexOutOfBoundsException {
+        if (index >= chars.length)
+            throw new IndexOutOfBoundsException("Выходит за границы");
+
+    }
+
+    private void verifyIllegalArgument(int index) throws IllegalArgumentException {
+        if (index < 0)
+            throw new IllegalArgumentException("Не тот тип переменной");
+    }
+
+
+    @Override
+    public String toString() {
+        return "MyString{" +
+                "chars=" + Arrays.toString(chars) +
+                '}';
     }
 }
 
