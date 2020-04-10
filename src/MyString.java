@@ -1,4 +1,5 @@
 import java.util.Arrays;
+import java.util.Iterator;
 
 public class MyString {
     private char[] chars;
@@ -73,6 +74,35 @@ public class MyString {
         return "MyString{" +
                 "chars=" + Arrays.toString(chars) +
                 '}';
+    }
+
+
+    class MyStringIterator implements Iterable {
+        private int count = 0;
+
+
+        @Override
+        public Iterator iterator() {
+            return new Iterator() {
+                @Override
+                public boolean hasNext() {
+                    if (chars.length > count) {
+                        return true;
+                    } else {
+                        count = 0;
+                        return false;
+                    }
+                }
+
+                @Override
+                public Character next() throws IndexOutOfBoundsException {
+                    verifyOutOfBounds(chars[count]);
+                    char nextChar = chars[count];
+                    count++;
+                    return nextChar;
+                }
+            };
+        }
     }
 }
 
