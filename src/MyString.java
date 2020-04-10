@@ -80,13 +80,13 @@ public class MyString {
     class MyStringIterator implements Iterator {
         private int count = 0;
 
+        public MyStringIterator iterator() {
+            return new MyStringIterator();
+        }
+
         @Override
         public boolean hasNext() {
-            if (chars.length > count) {
-                return true;
-            }
-            count = 0;
-            return false;
+            return chars.length > count;
         }
 
 
