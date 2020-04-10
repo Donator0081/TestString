@@ -11,19 +11,19 @@ public class MyString {
     public char get(int index) throws IllegalArgumentException, IndexOutOfBoundsException {
         verifyIndexInLength(index);
         verifyPositiveIndex(index);
-        return chars[index];
+        return this.chars[index];
     }
 
 
     public void set(char letter, int index) throws IllegalArgumentException, IndexOutOfBoundsException {
         verifyIndexInLength(index);
         verifyPositiveIndex(index);
-        chars[index] = letter;
+        this.chars[index] = letter;
     }
 
     public int indexOf(char letter) {
-        for (int i = 0; i < chars.length; i++) {
-            if (chars[i] == letter) {
+        for (int i = 0; i < this.chars.length; i++) {
+            if (this.chars[i] == letter) {
                 return i;
             }
         }
@@ -31,7 +31,7 @@ public class MyString {
     }
 
     public boolean contains(char letter) {
-        for (char aChar : chars) {
+        for (char aChar : this.chars) {
             if (aChar == letter) {
                 return true;
             }
@@ -45,7 +45,7 @@ public class MyString {
 
 
     private void verifyIndexInLength(int index) throws IndexOutOfBoundsException {
-        if (index >= chars.length)
+        if (index >= this.chars.length)
             throw new IndexOutOfBoundsException("Выходит за границы");
 
     }
@@ -59,7 +59,7 @@ public class MyString {
     @Override
     public String toString() {
         return "MyString{" +
-                "chars=" + Arrays.toString(chars) +
+                "chars=" + Arrays.toString(this.chars) +
                 '}';
     }
 
@@ -69,14 +69,14 @@ public class MyString {
 
         @Override
         public boolean hasNext() {
-            return chars.length > count;
+            return MyString.this.chars.length > count;
         }
 
 
         @Override
         public Character next() {
-            char nextChar = chars[count];
-            count++;
+            char nextChar = MyString.this.chars[count];
+            this.count++;
             return nextChar;
         }
     }
