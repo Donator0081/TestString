@@ -45,6 +45,10 @@ public class MyString {
         return false;
     }
 
+    public MyStringIterator iterator() {
+        return new MyStringIterator();
+    }
+
     public static void main(String[] args) {
         MyString myString = new MyString("abcdefgh".toCharArray());
         System.out.println(myString.get(3));
@@ -79,10 +83,6 @@ public class MyString {
 
     class MyStringIterator implements Iterator {
         private int count = 0;
-
-        public MyStringIterator iterator() {
-            return new MyStringIterator();
-        }
 
         @Override
         public boolean hasNext() {
