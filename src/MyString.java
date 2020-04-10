@@ -9,22 +9,16 @@ public class MyString {
     }
 
     public char get(int index) throws IllegalArgumentException, IndexOutOfBoundsException {
-        verifyOutOfBounds(index);
-        verifyIllegalArgument(index);
-        if (index >= 0) {
-            return chars[index];
-        } else {
-            return 0;
-        }
+        verifyIndexInLength(index);
+        verifyPositiveIndex(index);
+        return chars[index];
     }
 
 
     public void set(char letter, int index) throws IllegalArgumentException, IndexOutOfBoundsException {
-        verifyOutOfBounds(index);
-        verifyIllegalArgument(index);
-        if (index >= 0) {
-            chars[index] = letter;
-        }
+        verifyIndexInLength(index);
+        verifyPositiveIndex(index);
+        chars[index] = letter;
     }
 
     public int indexOf(char letter) {
@@ -49,25 +43,14 @@ public class MyString {
         return new MyStringIterator();
     }
 
-    public static void main(String[] args) {
-        MyString myString = new MyString("abcdefgh".toCharArray());
-        System.out.println(myString.get(3));
-        System.out.println("Before set: " + myString.toString());
-        System.out.print("After set: ");
-        myString.set('x', 3);
-        System.out.println(myString.toString());
-        System.out.println(myString.indexOf('h'));
-        System.out.println(myString.contains('p'));
-    }
 
-
-    private void verifyOutOfBounds(int index) throws IndexOutOfBoundsException {
+    private void verifyIndexInLength(int index) throws IndexOutOfBoundsException {
         if (index >= chars.length)
             throw new IndexOutOfBoundsException("Выходит за границы");
 
     }
 
-    private void verifyIllegalArgument(int index) throws IllegalArgumentException {
+    private void verifyPositiveIndex(int index) throws IllegalArgumentException {
         if (index < 0)
             throw new IllegalArgumentException("Не тот тип переменной");
     }
