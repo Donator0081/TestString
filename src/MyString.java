@@ -9,15 +9,15 @@ public class MyString {
     }
 
     public char get(int index) throws IllegalArgumentException, IndexOutOfBoundsException {
-        verifyIndexInLength(index);
-        verifyPositiveIndex(index);
+        this.verifyIndexInLength(index);
+        this.verifyPositiveIndex(index);
         return this.chars[index];
     }
 
 
     public void set(char letter, int index) throws IllegalArgumentException, IndexOutOfBoundsException {
-        verifyIndexInLength(index);
-        verifyPositiveIndex(index);
+        this.verifyIndexInLength(index);
+        this.verifyPositiveIndex(index);
         this.chars[index] = letter;
     }
 
@@ -64,7 +64,7 @@ public class MyString {
     }
 
 
-    class MyStringIterator implements Iterator {
+    class MyStringIterator implements Iterator<Character> {
         private int count = 0;
 
         @Override
