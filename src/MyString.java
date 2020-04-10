@@ -84,21 +84,20 @@ public class MyString {
         public boolean hasNext() {
             if (chars.length > count) {
                 return true;
-            } else {
-                count = 0;
-                return false;
             }
+            count = 0;
+            return false;
         }
 
-            @Override
-            public Object next () throws IndexOutOfBoundsException {
-                verifyOutOfBounds(chars[count]);
-                char nextChar = chars[count];
-                count++;
-                return nextChar;
-            }
+
+        @Override
+        public Character next() {
+            char nextChar = chars[count];
+            count++;
+            return nextChar;
         }
     }
+}
 
 
 
