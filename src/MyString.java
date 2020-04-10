@@ -77,34 +77,28 @@ public class MyString {
     }
 
 
-    class MyStringIterator implements Iterable {
+    class MyStringIterator implements Iterator {
         private int count = 0;
 
-
         @Override
-        public Iterator iterator() {
-            return new Iterator() {
-                @Override
-                public boolean hasNext() {
-                    if (chars.length > count) {
-                        return true;
-                    } else {
-                        count = 0;
-                        return false;
-                    }
-                }
+        public boolean hasNext() {
+            if (chars.length > count) {
+                return true;
+            } else {
+                count = 0;
+                return false;
+            }
+        }
 
-                @Override
-                public Character next() throws IndexOutOfBoundsException {
-                    verifyOutOfBounds(chars[count]);
-                    char nextChar = chars[count];
-                    count++;
-                    return nextChar;
-                }
-            };
+            @Override
+            public Object next () throws IndexOutOfBoundsException {
+                verifyOutOfBounds(chars[count]);
+                char nextChar = chars[count];
+                count++;
+                return nextChar;
+            }
         }
     }
-}
 
 
 
